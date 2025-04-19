@@ -7,14 +7,12 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
 
   const [state, setState] = useState('Sign Up')
-
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
   const navigate = useNavigate()
   const { backendUrl, token, setToken } = useContext(AppContext)
-
+  
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
