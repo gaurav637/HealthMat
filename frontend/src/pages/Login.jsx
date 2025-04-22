@@ -18,8 +18,9 @@ const Login = () => {
 
     if (state === 'Sign Up') {
 
-      const { data } = await axios.post(backendUrl + '/api/user/register', { name, email, password })
-
+      // const { data } = await axios.post(backendUrl + '/api/user/register', { name, email, password })
+      const { data } = await axios.post('http://localhost:4000/api/user/register', { name, email, password })
+      console.log("data -. ", data);
       if (data.success) {
         localStorage.setItem('token', data.token)
         setToken(data.token)
@@ -64,11 +65,17 @@ const Login = () => {
           <p>Email</p>
           <input onChange={(e) => setEmail(e.target.value)} value={email} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="email" required />
         </div>
+
+
         <div className='w-full '>
           <p>Password</p>
           <input onChange={(e) => setPassword(e.target.value)} value={password} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="password" required />
         </div>
+
+        
         <button className='bg-primary text-white w-full py-2 my-2 rounded-md text-base'>{state === 'Sign Up' ? 'Create account' : 'Login'}</button>
+       
+       
         {state === 'Sign Up'
           ? <p>Already have an account? <span onClick={() => setState('Login')} className='text-primary underline cursor-pointer'>Login here</span></p>
           : <p>Create an new account? <span onClick={() => setState('Sign Up')} className='text-primary underline cursor-pointer'>Click here</span></p>
